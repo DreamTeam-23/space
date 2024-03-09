@@ -19,7 +19,7 @@ export default function LoginPage() {
 
     useEffect(() => {
         if (!!user) {
-            navigate(`/`);
+            navigate(`/space`);
         }
     }, [user])
 
