@@ -37,7 +37,7 @@ export default function Header() {
             </div>}
             {expandedMenu && <div onClick={toggleMenu} className="text-center py-2 md:py-4 text-2xl md:hidden">&#127828;</div>}
             <div className="flex justify-between md:hidden">
-                {!expandedMenu && <NavLink to="/" className="py-2 px-2 md:hidden"><div className="flex">Space</div></NavLink>}
+                {!expandedMenu && <NavLink to="/space" className="py-2 px-2 md:hidden"><div className="flex">Space</div></NavLink>}
                 {!expandedMenu && <div onClick={toggleMenu} className="text-3xl md:hidden">&#127828;</div>}
             </div>
         </header>
