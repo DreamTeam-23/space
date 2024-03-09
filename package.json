@@ -2,7 +2,7 @@
   "name": "space",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://dreamteam23.github.io/space/",
+  "homepage": "https://dreamteam-23.github.io/space/",
   "type": "module",
   "scripts": {
     "dev": "vite",
