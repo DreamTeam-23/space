@@ -13,6 +13,7 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Dashboard from "./pages/Dashboard";
 
 export function Router() {
 
@@ -24,6 +25,7 @@ export function Router() {
                 <Route path="/space/users/signup" element={<SignupPage />} />
                 <Route path="/space/about" element={<About />} />
                 <Route path="/space/contact" element={<Contact />} />
+                <Route path="/space/dashboard" element={<Dashboard />} />
             </Route>
         )
     )
