@@ -24,7 +24,7 @@ export default function HomePage() {
             <main className="flex-1 flex flex-col items-center">
                 <h1 className="text-teal-400 text-3xl text-center py-10">Space</h1>
                 <p className="text-teal-400 text-xl text-center">"A space to breathe"</p>
-                {!user && <NavLink to="/users/login" className="text-xl text-center my-5 py-5 px-5 rounded-xl bg-gradient-to-r from-teal-900 to-teal-500 text-white">Login</NavLink>}
+                {!user && <NavLink to="/space/users/login" className="text-xl text-center my-5 py-5 px-5 rounded-xl bg-gradient-to-r from-teal-900 to-teal-500 text-white">Login</NavLink>}
             </main>
             <Footer />
         </div>

@@ -19,11 +19,11 @@ export function Router() {
     const router = createBrowserRouter(
         createRoutesFromElements(
             <Route element={<Layout />}>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/users/login" element={<LoginPage />} />
-                <Route path="/users/signup" element={<SignupPage />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/contact" element={<Contact />} />
+                <Route path="/space" element={<HomePage />} />
+                <Route path="/space/users/login" element={<LoginPage />} />
+                <Route path="/space/users/signup" element={<SignupPage />} />
+                <Route path="/space/about" element={<About />} />
+                <Route path="/space/contact" element={<Contact />} />
             </Route>
         )
     )

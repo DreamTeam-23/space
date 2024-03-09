@@ -26,7 +26,7 @@ export default function SignupPage() {
         const res = await axios.post(`${DOMAIN}/api/users/`, newUser);
         if (res?.data.success) {
             setMessage(res?.data.message);
-            navigate("/users/login");
+            navigate("/space/users/login");
         }
         else {
             setMessage(res?.data.message);
@@ -55,7 +55,7 @@ export default function SignupPage() {
                         <label>Email</label>
                     </div>
                     <button className="rounded-xl my-5 py-2 px-2 bg-gradient-to-r from-cyan-900 to-teal-900 text-white">Sign Up</button>
-                    <NavLink to="/users/login" className="text-center text-teal-600 hover:text-teal-200 transition-all ease duration-3000">Login</NavLink>
+                    <NavLink to="/space/users/login" className="text-center text-teal-600 hover:text-teal-200 transition-all ease duration-3000">Login</NavLink>
                 </form>
                 <p className="text-center py-2 text-xl text-teal-300">{message}</p>
             </main>

@@ -52,7 +52,7 @@ export default function LoginPage() {
                         <label>Password</label>
                     </div>
                     <button className="rounded-xl my-5 py-2 px-2 bg-gradient-to-r from-cyan-900 to-teal-900 text-white">Login</button>
-                    <NavLink to="/users/signup" className="text-center text-teal-600 hover:text-teal-200 transition-all ease duration-3000">Sign Up</NavLink>
+                    <NavLink to="/space/users/signup" className="text-center text-teal-600 hover:text-teal-200 transition-all ease duration-3000">Sign Up</NavLink>
                 </form>
                 {authLoading ? <h2>Loading...</h2> : null}
                 <p className="text-center py-2 text-xl text-teal-300">{message}</p>
