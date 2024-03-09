@@ -6,6 +6,6 @@ version: 1.0
 description: endpoint for Space client
  */
 
-const DOMAIN = "http://localhost:3333";
+const DOMAIN = "https://space-server-production.up.railway.app";
 
 export default DOMAIN;
