@@ -2,6 +2,16 @@
 import axios from "axios";
 import DOMAIN from "../services/endpoint";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
+
+Reminder.propTypes = {
+    user: PropTypes.shape({
+        userId: PropTypes.string.isRequired
+    }).isRequired,
+    reminderId: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired
+};
 
 export default function Reminder(props) {
 

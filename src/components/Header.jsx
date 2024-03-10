@@ -1,46 +1,44 @@
-
-/*
-author: Paul Kim
-date: March 9, 2024
-version: 1.0
-description: header component for Space client
- */
-
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
-import { IoHomeSharp } from "react-icons/io5";
+import { useState, useEffect } from "react";
+import { IoMenuSharp, IoCloseSharp } from "react-icons/io5";
 import useAuthStore from "../store/AuthStore";
 
 export default function Header() {
+    const { logoutService, user } = useAuthStore((state) => state);
+    const [expandedMenu, setExpandedMenu] = useState(false);
 
-    const { logoutService, user } = useAuthStore((state) => state)
-    const [expandedMenu, setExpandedMenu] = useState(window.innerWidth > 500 ? true : false);
+    // Function to toggle the expanded menu state
+    const toggleMenu = () => setExpandedMenu(!expandedMenu);
 
-    function toggleMenu() {
-        setExpandedMenu(!expandedMenu)
-    }
+    // Close the menu when the window is resized to a wider view
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth > 768) {
+                setExpandedMenu(false);
+            }
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     return (
-        <header className="sticky z-50 top-0 md:flex justify-between bg-gradient-to-r from-black to-teal-900 text-white">
-            {expandedMenu && <div className="flex flex-col md:flex-row">
-                {!user && <NavLink to="/space" className="flex py-2 md:py-4 mx-auto" ><IoHomeSharp size={20} className=" text-center mx-2" /> Home</NavLink>}
-                {user && <NavLink to={`/space/dashboard/${user.userId}`} className="flex py-2 md:py-4 mx-auto" ><IoHomeSharp size={20} className=" text-center mx-2" /> Home</NavLink>}
-            </div>}
-            {expandedMenu && <div className="flex flex-col md:block md:py-4">
-                <NavLink to="/space/about" className="text-center py-2 md:py-4 px-5" >About</NavLink>
-                {!user && <NavLink to="/space/contact" className="text-center py-2 md:py-4 px-5" >Contact</NavLink>}
-            </div>}
-            {expandedMenu && <div className="flex flex-col md:block md:py-4">
-                {!user && <NavLink to="/space/users/login" className="text-center py-2 md:py-4 px-5" >Login</NavLink>}
-                {!user && <NavLink to="/space/users/signup" className="text-center py-2 md:py-4 px-5" >Signup</NavLink>}
-                {user && <NavLink to={`/space/user/profile/${user.userId}`} className="text-center py-2 md:py-4 px-5">{user.username}</NavLink>}
-                {user && <NavLink to="/space" onClick={logoutService} className="text-center py-2 md:py-4 px-5">Logout</NavLink>}
-            </div>}
-            {expandedMenu && <div onClick={toggleMenu} className="text-center py-2 md:py-4 text-2xl md:hidden">&#127828;</div>}
-            <div className="flex justify-between md:hidden">
-                {!expandedMenu && <NavLink to="/space" className="py-2 px-2 md:hidden"><div className="flex">Space</div></NavLink>}
-                {!expandedMenu && <div onClick={toggleMenu} className="text-3xl md:hidden">&#127828;</div>}
+        <header className="sticky top-0 z-50 bg-gradient-to-r from-black to-teal-900 text-white">
+            <div className="flex justify-between items-center p-4">
+                <NavLink to="/space" className="text-lg font-bold">Space</NavLink>
+                <div onClick={toggleMenu} className="text-3xl cursor-pointer z-50">
+                    {expandedMenu ? <IoCloseSharp /> : <IoMenuSharp />}
+                </div>
             </div>
+            {expandedMenu && (
+                <div className="fixed inset-0 bg-black bg-opacity-75 flex flex-col items-center justify-start pt-20 text-xl">
+                    <NavLink to="/space/" className="py-2" onClick={toggleMenu}>Home</NavLink>
+                    <NavLink to="/space/about" className="py-2" onClick={toggleMenu}>About</NavLink>
+                    {!user && <NavLink to="/space/contact" className="py-2" onClick={toggleMenu}>Contact</NavLink>}
+                    {user && <NavLink to={`/space/dashboard?userId=${user.userId}`} className="py-2" onClick={toggleMenu}>Dashboard</NavLink>}
+                    {user && <NavLink to={`/space/user/profile/${user.userId}`}><span className="py-2">{user.username}</span></NavLink>}
+                    {user && <NavLink to="/space/" onClick={() => { logoutService(); toggleMenu(); }} className="py-2">Logout</NavLink>}
+                </div>
+            )}
         </header>
-    )
+    );
 }
