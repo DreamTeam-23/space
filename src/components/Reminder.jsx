@@ -9,7 +9,9 @@ export default function Reminder(props) {
 
     async function handleCompleteReminder() {
         const completed = true
-        const res = await axios.post(`${DOMAIN}/api/reminders/complete/${props.reminderId}`, completed)
+        const userId = props.user.userId
+        const data = { completed, userId }
+        const res = await axios.post(`${DOMAIN}/api/reminders/complete/${props.reminderId}`, data)
         if (res?.data.success) {
             navigate(`/space/dashboard/${props.user.userId}`)
         }
