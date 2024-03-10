@@ -31,10 +31,11 @@ export default function Header() {
             </div>
             {expandedMenu && (
                 <div className="fixed inset-0 bg-black bg-opacity-75 flex flex-col items-center justify-start pt-20 text-xl">
-                    <NavLink to="/space/" className="py-2" onClick={toggleMenu}>Home</NavLink>
+                    {!user && <NavLink to="/space/" className="py-2" onClick={toggleMenu}>Home</NavLink>}
+                    {user && <NavLink to={`/space/dashboard/${user.userId}`} className="py-2" onClick={toggleMenu}>Home</NavLink>}
                     <NavLink to="/space/about" className="py-2" onClick={toggleMenu}>About</NavLink>
                     {!user && <NavLink to="/space/contact" className="py-2" onClick={toggleMenu}>Contact</NavLink>}
-                    {user && <NavLink to={`/space/dashboard?userId=${user.userId}`} className="py-2" onClick={toggleMenu}>Dashboard</NavLink>}
+                    {user && <NavLink to={`/space/dashboard/${user.userId}`} className="py-2" onClick={toggleMenu}>Dashboard</NavLink>}
                     {user && <NavLink to={`/space/user/profile/${user.userId}`}><span className="py-2">{user.username}</span></NavLink>}
                     {user && <NavLink to="/space/" onClick={() => { logoutService(); toggleMenu(); }} className="py-2">Logout</NavLink>}
                 </div>
