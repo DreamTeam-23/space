@@ -13,7 +13,9 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import Dashboard from "./pages/Dashboard";
+import Dashboard, { reminderLoader } from "./pages/Dashboard";
+import CreateReminderPage from "./pages/CreateReminderPage";
+import ProfilePage, { userLoader } from "./pages/ProfilePage";
 
 export function Router() {
 
@@ -25,7 +27,9 @@ export function Router() {
                 <Route path="/space/users/signup" element={<SignupPage />} />
                 <Route path="/space/about" element={<About />} />
                 <Route path="/space/contact" element={<Contact />} />
-                <Route path="/space/dashboard" element={<Dashboard />} />
+                <Route path="/space/dashboard/:userId" element={<Dashboard />} loader={reminderLoader}/>
+                <Route path="/space/reminders/create" element={<CreateReminderPage />} />
+                <Route path="/space/user/profile/:userId" element={<ProfilePage />} loader={userLoader}/>
             </Route>
         )
     )
